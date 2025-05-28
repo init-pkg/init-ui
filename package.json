@@ -115,10 +115,10 @@
   },
   "peerDependencies": {
     "clsx": "^2.1.1",
-    "libphonenumber-js": "^1.12.8",
+    "libphonenumber-js": ">=1.0.0",
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0",
-    "react-hook-form": "^7.56.4",
+    "react-hook-form": ">=7.50.0",
     "swiper": ">=11.0.0",
     "tailwind-merge": "^3.3.0",
     "zod": ">=3.20.0"
