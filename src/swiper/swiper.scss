@@ -1,0 +1,12 @@
+.swiper {
+  overflow: hidden;
+  position: relative;
+
+  &-slide {
+    flex-shrink: 0;
+  }
+
+  &-hidden {
+    display: none;
+  }
+}

@@ -1,3 +1,1 @@
-// Your root exports
-
-export {};
+export * from "./swiper";

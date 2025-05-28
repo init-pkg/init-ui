@@ -1,12 +1,23 @@
 import { FlatCompat } from "@eslint/eslintrc";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
+import parserTs from "@typescript-eslint/parser";
 
 /**
  * @type {import('eslint').Linter.Config}
  */
 const config = {
   files: ["**/*.ts", "**/*.tsx"],
+
+  files: ["**/*.ts", "**/*.tsx"],
+
+  languageOptions: {
+    parser: parserTs,
+    parserOptions: {
+      project: "./tsconfig.json",
+      sourceType: "module",
+    },
+  },
 
   rules: {
     "prettier/prettier": "error",
@@ -41,7 +52,7 @@ const eslintConfig = [
     "eslint-plugin-prettier"
   ),
   config,
-  { ignores: ["node_modules", "**/*.cjs"] },
+  { ignores: ["node_modules", "**/*.cjs", "dist"] },
 ];
 
 export default eslintConfig;

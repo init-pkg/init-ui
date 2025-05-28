@@ -1,8 +1,10 @@
 import { defineConfig } from "tsup";
+import { sassPlugin } from "esbuild-sass-plugin";
 
 export default defineConfig({
-  entry: ["src/index.ts"],
+  entry: ["src/index.ts", "src/swiper/index.ts"],
   format: ["esm", "cjs"],
+  esbuildPlugins: [sassPlugin()],
   dts: true,
   splitting: false,
   sourcemap: true,
