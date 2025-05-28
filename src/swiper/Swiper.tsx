@@ -101,8 +101,6 @@ export function SwiperNext<T extends object>({
 
   const [isMounted, setIsMounted] = useState(false);
 
-  console.log("render");
-
   useEffect(() => {
     if (!swiperElement.current) return;
 
