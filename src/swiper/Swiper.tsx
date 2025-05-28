@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { cn } from "@/inner/cn";
+import { cn } from "@/private/cn";
 import "@/swiper/swiper.scss";
 import { ReactNode, RefObject, useEffect, useRef, useState } from "react";
 import Swiper from "swiper";

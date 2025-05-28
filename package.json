@@ -91,6 +91,7 @@
     "prettier": "^3.5.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-hook-form": "^7.56.4",
     "release-it": "^19.0.2",
     "sass": "^1.89.0",
     "storybook": "^8.6.14",
@@ -117,9 +118,16 @@
     "libphonenumber-js": "^1.12.8",
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0",
+    "react-hook-form": "^7.56.4",
     "swiper": ">=11.0.0",
     "tailwind-merge": "^3.3.0",
     "zod": ">=3.20.0"
+  },
+  "dependencies": {
+    "@maskito/core": "^3.8.0",
+    "@maskito/kit": "^3.8.0",
+    "@maskito/phone": "^3.8.0",
+    "@maskito/react": "^3.8.0"
   },
   "eslintConfig": {
     "extends": [

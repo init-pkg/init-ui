@@ -2,7 +2,7 @@ import React from "react";
 import { SwiperNext } from "@/swiper";
 import { Meta, StoryObj } from "@storybook/react/*";
 import "./swiper-story.scss";
-import { cn } from "@/inner/cn";
+import { cn } from "@/private/cn";
 
 const swiperData = [
   {
