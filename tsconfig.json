@@ -20,6 +20,13 @@
       "@tests/*": ["tests/*"]
     }
   },
-  "include": ["src", "tests", "**/*.ts", "**/*.tsx", "eslint.config.mjs"],
+  "include": [
+    "src",
+    "tests",
+    "**/*.ts",
+    "**/*.tsx",
+    ".storybook",
+    "eslint.config.mjs"
+  ],
   "exclude": ["node_modules", "dist"]
 }

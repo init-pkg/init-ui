@@ -31,3 +31,5 @@ lerna-debug.log*
 *.env
 .vscode
 .idea
+
+*storybook.log

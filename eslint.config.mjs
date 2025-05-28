@@ -9,8 +9,6 @@ import parserTs from "@typescript-eslint/parser";
 const config = {
   files: ["**/*.ts", "**/*.tsx"],
 
-  files: ["**/*.ts", "**/*.tsx"],
-
   languageOptions: {
     parser: parserTs,
     parserOptions: {
@@ -52,7 +50,7 @@ const eslintConfig = [
     "eslint-plugin-prettier"
   ),
   config,
-  { ignores: ["node_modules", "**/*.cjs", "dist"] },
+  { ignores: ["node_modules", "**/*.cjs", "dist", ".storybook"] },
 ];
 
 export default eslintConfig;

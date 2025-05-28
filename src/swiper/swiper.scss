@@ -2,6 +2,10 @@
   overflow: hidden;
   position: relative;
 
+  &-wrapper {
+    display: flex;
+  }
+
   &-slide {
     flex-shrink: 0;
   }

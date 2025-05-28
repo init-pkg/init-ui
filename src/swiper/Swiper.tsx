@@ -1,4 +1,6 @@
 "use client";
+
+import React from "react";
 import { cn } from "@/inner/cn";
 import "@/swiper/swiper.scss";
 import { ReactNode, RefObject, useEffect, useRef, useState } from "react";
@@ -98,6 +100,8 @@ export function SwiperNext<T extends object>({
   const swiperRef = useRef<Swiper | null>(null);
 
   const [isMounted, setIsMounted] = useState(false);
+
+  console.log("render");
 
   useEffect(() => {
     if (!swiperElement.current) return;
