@@ -1,0 +1,17 @@
+pre-commit:
+  parallel: true
+  commands:
+    lint:
+      run: pnpm lint
+    test:
+      run: pnpm test
+    tscheck:
+      run: pnpm tscheck
+    format:
+      run: pnpx prettier --check .
+
+commit-msg:
+  parallel: true
+  commands:
+    commitlint:
+      run: pnpx commitlint --edit {1}
