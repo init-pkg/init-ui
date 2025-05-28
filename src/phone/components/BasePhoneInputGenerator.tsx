@@ -93,4 +93,7 @@ function BasePhoneInputGenerator(
 
 BasePhoneInputGenerator.displayName = "BasePhoneInputGenerator";
 
+/**
+ * @deprecated use PhoneInputGenerator instead
+ */
 export default forwardRef(BasePhoneInputGenerator);

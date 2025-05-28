@@ -7,6 +7,31 @@ import BasePhoneInputGenerator from "./BasePhoneInputGenerator";
 import { ControllerFieldRenderer } from "@/forms/types";
 import { blankControllerField } from "@/forms/noops";
 
+/**
+ * PhoneInputGenerator - A component that converts your input into a phone input with all needed functionality
+ *
+ * @example
+ * ```tsx
+ * <PhoneInputGenerator
+ *   {...props}
+ *   ref={ref}
+ *   renderCountryMark={(country) => (
+ *     <div className="absolute right-0 top-0 h-full w-10 text-white bg-red-500">
+ *       {country}
+ *     </div>
+ *   )}
+ * >
+ *   {(field) => <Input {...field} />}
+ * </PhoneInputGenerator>
+ * ```
+ *
+ * @param props - Props for phone input generator
+ * @param forwardedRef - Forwarded ref to the input element
+ *
+ * @remarks
+ * - If you want react-hook-form to control the input, you need to pass both name and control props
+ * - Do not use register function to register the input, it will not work
+ */
 function PhoneInputGenerator<T extends FieldValues>(
   {
     name,
