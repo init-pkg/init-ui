@@ -11,6 +11,7 @@ import {
   SwiperOptions,
   Swiper as SwiperType,
 } from "swiper/types";
+import { safeJSONStringify } from "@/utils/stringify";
 
 export interface SwiperProps<T extends object> {
   options?: SwiperOptions;
@@ -132,7 +133,7 @@ export function SwiperNext<T extends object>({
     return () => {
       swiper.destroy();
     };
-  }, [JSON.stringify(data)]);
+  }, [safeJSONStringify(data)]);
 
   return (
     <>
