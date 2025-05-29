@@ -2,7 +2,6 @@
 
 import React from "react";
 import { cn } from "@/private/cn";
-import "@/swiper/swiper.scss";
 import { ReactNode, RefObject, useEffect, useRef, useState } from "react";
 import Swiper from "swiper";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
@@ -12,6 +11,20 @@ import {
   Swiper as SwiperType,
 } from "swiper/types";
 import { safeJSONStringify } from "@/utils/stringify";
+import { css } from "@emotion/css";
+
+const swiperStyles = css`
+  overflow: hidden;
+  position: relative;
+`;
+
+const swiperWrapperStyles = css`
+  display: flex;
+`;
+
+const swiperSlideStyles = css`
+  flex-shrink: 0;
+`;
 
 export interface SwiperProps<T extends object> {
   options?: SwiperOptions;
@@ -140,15 +153,21 @@ export function SwiperNext<T extends object>({
       {!isMounted && swiperFallback}
       <div
         ref={swiperElement}
-        className={cn("swiper", className, {
+        className={cn("swiper", swiperStyles, className, {
           "swiper-hidden": swiperFallback && !isMounted,
         })}
       >
-        <div className={cn("swiper-wrapper", wrapperClassName)}>
+        <div
+          className={cn(
+            "swiper-wrapper",
+            swiperWrapperStyles,
+            wrapperClassName
+          )}
+        >
           {data.map((slide, index) => (
             <div
               key={index}
-              className={cn("swiper-slide", slideClassName)}
+              className={cn("swiper-slide", swiperSlideStyles, slideClassName)}
             >
               {renderSlide(slide)}
             </div>
