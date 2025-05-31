@@ -1,8 +1,14 @@
 "use client";
 
-import React from "react";
 import { cn } from "@/private/cn";
-import { ReactNode, RefObject, useEffect, useRef, useState } from "react";
+import { safeJSONStringify } from "@/utils/stringify";
+import React, {
+  ReactNode,
+  RefObject,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import Swiper from "swiper";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import {
@@ -10,23 +16,14 @@ import {
   SwiperOptions,
   Swiper as SwiperType,
 } from "swiper/types";
-import { safeJSONStringify } from "@/utils/stringify";
-import { css } from "@emotion/css";
+import {
+  swiperHiddenStyles,
+  swiperSlideStyles,
+  swiperStyles,
+  swiperWrapperStyles,
+} from "./swiper.css";
 
-const swiperStyles = css`
-  overflow: hidden;
-  position: relative;
-`;
-
-const swiperWrapperStyles = css`
-  display: flex;
-`;
-
-const swiperSlideStyles = css`
-  flex-shrink: 0;
-`;
-
-export interface SwiperProps<T extends object> {
+export interface SwiperProps<T extends ReactNode | object = ReactNode> {
   options?: SwiperOptions;
   perView?: number | "auto";
   spaceBetween?: number;
@@ -95,7 +92,7 @@ export interface SwiperProps<T extends object> {
  * @param swiperRef - a ef for swiper instance
  */
 
-export function SwiperNext<T extends object>({
+export function SwiperNext<T extends ReactNode | object = ReactNode>({
   options,
   data,
   renderSlide,
@@ -154,7 +151,7 @@ export function SwiperNext<T extends object>({
       <div
         ref={swiperElement}
         className={cn("swiper", swiperStyles, className, {
-          "swiper-hidden": swiperFallback && !isMounted,
+          [swiperHiddenStyles]: swiperFallback && !isMounted,
         })}
       >
         <div
