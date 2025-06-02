@@ -1,5 +1,3 @@
-"use client";
-
 import { cn } from "@/private/cn";
 import { safeJSONStringify } from "@/utils/stringify";
 import React, {
@@ -22,12 +20,16 @@ import {
   swiperStyles,
   swiperWrapperStyles,
 } from "./swiper.css";
+import { useMounted } from "@/utils/isMounted";
 
+/**
+ * @interface SwiperProps - props for Swiper component
+ * @template T - type of data for swiper (ReactNode or object)
+ */
 export interface SwiperProps<T extends ReactNode | object = ReactNode> {
   options?: SwiperOptions;
   perView?: number | "auto";
   spaceBetween?: number;
-  children?: ReactNode | ReactNode[];
 
   /**
    * @description data for swiper
@@ -42,8 +44,8 @@ export interface SwiperProps<T extends ReactNode | object = ReactNode> {
   renderSlide: (slide: T) => ReactNode;
 
   /**
-   * @param swiperRef - a ef for swiper instance
-   * - provide here an object ref to tet swiper instance upon initialization
+   * @param swiperRef - a ref for swiper instance
+   * @description provide here an object ref to get swiper instance upon initialization
    */
   swiperRef?: RefObject<SwiperType | undefined>;
 
@@ -52,7 +54,11 @@ export interface SwiperProps<T extends ReactNode | object = ReactNode> {
   slideClassName?: string;
 
   /**
-   * @description modules for swiper
+   * - modules for swiper
+   * - built-in modules cannot be overridden
+   * ```ts
+   * [Navigation, Pagination, Autoplay] // Built-in modules
+   * ```
    */
   modules?: SwiperModule[];
 
@@ -89,7 +95,7 @@ export interface SwiperProps<T extends ReactNode | object = ReactNode> {
  * @param className - className for swiper
  * @param perView - number of slides per view
  * @param spaceBetween - space between slides
- * @param swiperRef - a ef for swiper instance
+ * @param swiperRef - a ref for swiper instance
  */
 
 export function SwiperNext<T extends ReactNode | object = ReactNode>({
@@ -110,7 +116,9 @@ export function SwiperNext<T extends ReactNode | object = ReactNode>({
   const swiperElement = useRef<HTMLDivElement>(null);
   const swiperRef = useRef<Swiper | null>(null);
 
+  const { isClient } = useMounted();
   const [isMounted, setIsMounted] = useState(false);
+  const isCompleted = isClient && isMounted;
 
   useEffect(() => {
     if (!swiperElement.current) return;
@@ -147,11 +155,11 @@ export function SwiperNext<T extends ReactNode | object = ReactNode>({
 
   return (
     <>
-      {!isMounted && swiperFallback}
+      {!isCompleted && swiperFallback}
       <div
         ref={swiperElement}
         className={cn("swiper", swiperStyles, className, {
-          [swiperHiddenStyles]: swiperFallback && !isMounted,
+          [swiperHiddenStyles]: !isCompleted,
         })}
       >
         <div

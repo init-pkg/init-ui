@@ -14,5 +14,6 @@ export const swiperSlideStyles = css`
 `;
 
 export const swiperHiddenStyles = css`
-  display: none;
+  visibility: hidden;
+  opacity: 0;
 `;
