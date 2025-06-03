@@ -1,4 +1,3 @@
-import { cn } from "@/private/cn";
 import { safeJSONStringify } from "@/utils/stringify";
 import React, {
   ReactNode,
@@ -21,6 +20,7 @@ import {
   swiperWrapperStyles,
 } from "./swiper.css";
 import { useMounted } from "@/utils/isMounted";
+import clsx from "clsx";
 
 /**
  * @interface SwiperProps - props for Swiper component
@@ -158,12 +158,15 @@ export function SwiperNext<T extends ReactNode | object = ReactNode>({
       {!isCompleted && swiperFallback}
       <div
         ref={swiperElement}
-        className={cn("swiper", swiperStyles, className, {
-          [swiperHiddenStyles]: !isCompleted,
-        })}
+        className={clsx(
+          "swiper",
+          swiperStyles,
+          className,
+          !isCompleted && swiperHiddenStyles
+        )}
       >
         <div
-          className={cn(
+          className={clsx(
             "swiper-wrapper",
             swiperWrapperStyles,
             wrapperClassName
@@ -172,7 +175,11 @@ export function SwiperNext<T extends ReactNode | object = ReactNode>({
           {data.map((slide, index) => (
             <div
               key={index}
-              className={cn("swiper-slide", swiperSlideStyles, slideClassName)}
+              className={clsx(
+                "swiper-slide",
+                swiperSlideStyles,
+                slideClassName
+              )}
             >
               {renderSlide(slide)}
             </div>
