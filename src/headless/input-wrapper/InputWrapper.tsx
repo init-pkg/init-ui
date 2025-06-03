@@ -1,18 +1,76 @@
 import React, { forwardRef } from "react";
 import { HeadlessInputWrapperProps } from "./wrapper.types";
-import { wrapperStyles } from "./wrapper.css";
+import {
+  descriptionStyles,
+  errorStyles,
+  labelStyles,
+  wrapperStyles,
+} from "./wrapper.css";
 import clsx from "clsx";
 
+/**
+ * ### Label wrapper that contains all features for input description
+ *
+ * You can provide and customize:
+ * - label
+ * - description
+ * - error
+ * - wrapper className
+ * - label className
+ * - description className
+ * - error className
+ *
+ * @example
+ * ```tsx
+ * <InputWrapper label="Name" description="Enter your name">
+ *  <Input />
+ * </InputWrapper>
+ * ```
+ */
 const InputWrapper = forwardRef<HTMLLabelElement, HeadlessInputWrapperProps>(
-  ({ children, error, label, description, wrapperClassName }) => {
+  (
+    {
+      children,
+      error,
+      label,
+      description,
+      wrapperClassName,
+      labelClassName,
+      descriptionClassName,
+      errorClassName,
+    },
+    ref
+  ) => {
     return (
-      <label className={clsx("input-wrapper", wrapperStyles, wrapperClassName)}>
-        {label && <span className="input-label">{label}</span>}
-        {children}
-        {description && (
-          <span className="input-description">{description}</span>
+      <label
+        ref={ref}
+        className={clsx("input-wrapper", wrapperStyles, wrapperClassName)}
+      >
+        {label && (
+          <span className={clsx("input-label", labelStyles, labelClassName)}>
+            {label}
+          </span>
         )}
-        {error && <span className="input-error">{error}</span>}
+
+        {children}
+
+        {description && !error && (
+          <span
+            className={clsx(
+              "input-description",
+              descriptionStyles,
+              descriptionClassName
+            )}
+          >
+            {description}
+          </span>
+        )}
+
+        {error && (
+          <span className={clsx("input-error", errorStyles, errorClassName)}>
+            {error}
+          </span>
+        )}
       </label>
     );
   }
