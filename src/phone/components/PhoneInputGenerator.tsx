@@ -33,15 +33,11 @@ import { blankControllerField } from "@/forms/noops";
  * - Do not use register function to register the input, it will not work
  */
 function PhoneInputGenerator<T extends FieldValues>(
-  {
-    name,
-    control,
-    onNumberChange,
-    validation,
-    ...props
-  }: PhoneInputGeneratorProps<T>,
+  props: PhoneInputGeneratorProps<T>,
   forwardedRef: ForwardedRef<HTMLInputElement>
 ) {
+  const { name, control, onNumberChange, validation, ...res } = props;
+
   function renderInput({
     ref,
     onChange,
@@ -59,7 +55,7 @@ function PhoneInputGenerator<T extends FieldValues>(
           onNumberChange?.(val, e.currentTarget.value);
           onChange?.(val);
         }}
-        {...props}
+        {...res}
       />
     );
   }

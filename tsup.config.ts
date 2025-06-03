@@ -6,6 +6,7 @@ export default defineConfig({
     "src/swiper/index.ts",
     "src/phone/index.ts",
     "src/utils/index.ts",
+    "src/headless/index.ts",
   ],
   format: ["esm", "cjs"],
   esbuildPlugins: [],

@@ -98,21 +98,25 @@ export interface SwiperProps<T extends ReactNode | object = ReactNode> {
  * @param swiperRef - a ref for swiper instance
  */
 
-export function SwiperNext<T extends ReactNode | object = ReactNode>({
-  options,
-  data,
-  renderSlide,
-  className,
-  perView,
-  spaceBetween,
-  onSlideChange,
-  onInit,
-  wrapperClassName,
-  slideClassName,
-  modules = [],
-  swiperFallback,
-  swiperRef: externalRef,
-}: SwiperProps<T>) {
+export function SwiperNext<T extends ReactNode | object = ReactNode>(
+  props: SwiperProps<T>
+) {
+  const {
+    options,
+    data,
+    renderSlide,
+    className,
+    perView,
+    spaceBetween,
+    onSlideChange,
+    onInit,
+    wrapperClassName,
+    slideClassName,
+    modules = [],
+    swiperFallback,
+    swiperRef: externalRef,
+  } = props;
+
   const swiperElement = useRef<HTMLDivElement>(null);
   const swiperRef = useRef<Swiper | null>(null);
 

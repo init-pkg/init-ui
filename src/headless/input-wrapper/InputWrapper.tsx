@@ -28,8 +28,8 @@ import clsx from "clsx";
  * ```
  */
 const InputWrapper = forwardRef<HTMLLabelElement, HeadlessInputWrapperProps>(
-  (
-    {
+  (props, ref) => {
+    const {
       children,
       error,
       label,
@@ -38,9 +38,8 @@ const InputWrapper = forwardRef<HTMLLabelElement, HeadlessInputWrapperProps>(
       labelClassName,
       descriptionClassName,
       errorClassName,
-    },
-    ref
-  ) => {
+    } = props;
+
     return (
       <label
         ref={ref}
