@@ -166,7 +166,7 @@ export function SwiperNext<T extends ReactNode | object = ReactNode>(
 
       <div
         ref={swiperElement}
-        style={isCompleted ? {} : { display: "hidden" }}
+        style={{ display: isCompleted ? "flex" : "none" }}
         className={clsx("swiper", swiperStyles, className)}
       >
         <div
