@@ -10,7 +10,6 @@ export default defineConfig({
     "src/headless/index.ts",
   ],
   format: ["esm", "cjs"],
-  bundle: true,
   esbuildPlugins: [],
   plugins: [],
   dts: true,
