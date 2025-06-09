@@ -45,6 +45,7 @@ const meta: Meta<SwiperType> = {
     spaceBetween: 20,
     perView: 1,
     className: "swiper-story",
+    swiperFallback: <div className="fallback-block" />,
     slideClassName: "swiper-story-slide",
     renderSlide: (item) => (
       <div className={clsx("slide-content", item.theme)}>
