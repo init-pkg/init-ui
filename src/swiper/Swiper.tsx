@@ -157,42 +157,34 @@ export function SwiperNext<T extends ReactNode | object = ReactNode>(
   }, [safeJSONStringify(data)]);
 
   return (
-    <>
+    <div
+      ref={swiperElement}
+      style={{ position: "relative" }}
+      className={clsx("swiper", swiperStyles, className)}
+    >
       <div
-        ref={swiperElement}
-        style={{
-          visibility: isCompleted ? "visible" : "hidden",
-          position: "relative",
-        }}
-        className={clsx("swiper", swiperStyles, className)}
-      >
-        <div
-          className={clsx(
-            "swiper-wrapper",
-            swiperWrapperStyles,
-            wrapperClassName
-          )}
-        >
-          {data.map((slide, index) => (
-            <div
-              key={index}
-              className={clsx(
-                "swiper-slide",
-                swiperSlideStyles,
-                slideClassName
-              )}
-            >
-              {renderSlide(slide)}
-            </div>
-          ))}
-        </div>
-
-        {!isCompleted && (
-          <div className={clsx("swiper-fallback", swiperFallback)}>
-            {swiperFallback}
-          </div>
+        style={{ visibility: isCompleted ? "visible" : "hidden" }}
+        className={clsx(
+          "swiper-wrapper",
+          swiperWrapperStyles,
+          wrapperClassName
         )}
+      >
+        {data.map((slide, index) => (
+          <div
+            key={index}
+            className={clsx("swiper-slide", swiperSlideStyles, slideClassName)}
+          >
+            {renderSlide(slide)}
+          </div>
+        ))}
       </div>
-    </>
+
+      {!isCompleted && (
+        <div className={clsx("swiper-fallback", swiperFallback)}>
+          {swiperFallback}
+        </div>
+      )}
+    </div>
   );
 }
