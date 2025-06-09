@@ -14,6 +14,8 @@ export const swiperSlideStyles = css`
 `;
 
 export const swiperFallback = css`
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
 `;

@@ -158,15 +158,12 @@ export function SwiperNext<T extends ReactNode | object = ReactNode>(
 
   return (
     <>
-      {!isCompleted && (
-        <div className={clsx("swiper-fallback", swiperFallback)}>
-          {swiperFallback}
-        </div>
-      )}
-
       <div
         ref={swiperElement}
-        style={{ display: isCompleted ? "flex" : "none" }}
+        style={{
+          visibility: isCompleted ? "visible" : "hidden",
+          position: "relative",
+        }}
         className={clsx("swiper", swiperStyles, className)}
       >
         <div
@@ -189,6 +186,12 @@ export function SwiperNext<T extends ReactNode | object = ReactNode>(
             </div>
           ))}
         </div>
+
+        {!isCompleted && (
+          <div className={clsx("swiper-fallback", swiperFallback)}>
+            {swiperFallback}
+          </div>
+        )}
       </div>
     </>
   );
