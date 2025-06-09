@@ -1,4 +1,4 @@
-import { css } from "@emotion/css";
+import { css } from "@emotion/react";
 
 export const swiperStyles = css`
   overflow: hidden;
@@ -11,9 +11,4 @@ export const swiperWrapperStyles = css`
 
 export const swiperSlideStyles = css`
   flex-shrink: 0;
-`;
-
-export const swiperHiddenStyles = css`
-  visibility: hidden;
-  opacity: 0;
 `;

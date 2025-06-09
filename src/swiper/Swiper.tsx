@@ -14,7 +14,6 @@ import {
   Swiper as SwiperType,
 } from "swiper/types";
 import {
-  swiperHiddenStyles,
   swiperSlideStyles,
   swiperStyles,
   swiperWrapperStyles,
@@ -162,12 +161,8 @@ export function SwiperNext<T extends ReactNode | object = ReactNode>(
       {!isCompleted && swiperFallback}
       <div
         ref={swiperElement}
-        className={clsx(
-          "swiper",
-          swiperStyles,
-          className,
-          !isCompleted && swiperHiddenStyles
-        )}
+        style={{ visibility: isCompleted ? "visible" : "hidden" }}
+        className={clsx("swiper", swiperStyles, className)}
       >
         <div
           className={clsx(

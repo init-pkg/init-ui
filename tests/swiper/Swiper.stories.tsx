@@ -2,7 +2,7 @@ import React from "react";
 import { SwiperNext } from "@/swiper";
 import { Meta, StoryObj } from "@storybook/react/*";
 import "./swiper-story.scss";
-import { cn } from "@/private/cn";
+import clsx from "clsx";
 
 const swiperData = [
   {
@@ -47,7 +47,7 @@ const meta: Meta<SwiperType> = {
     className: "swiper-story",
     slideClassName: "swiper-story-slide",
     renderSlide: (item) => (
-      <div className={cn("slide-content", item.theme)}>
+      <div className={clsx("slide-content", item.theme)}>
         <div className="slide-icon">{item.icon}</div>
         <h3 className="slide-title">{item.title}</h3>
         <p className="slide-description">{item.description}</p>

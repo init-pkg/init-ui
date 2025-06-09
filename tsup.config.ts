@@ -1,4 +1,5 @@
 import { defineConfig } from "tsup";
+// import cssModulesPlugin from "esbuild-css-modules-plugin";
 
 export default defineConfig({
   entry: [
@@ -9,7 +10,9 @@ export default defineConfig({
     "src/headless/index.ts",
   ],
   format: ["esm", "cjs"],
+  bundle: true,
   esbuildPlugins: [],
+  plugins: [],
   dts: true,
   splitting: false,
   sourcemap: true,
