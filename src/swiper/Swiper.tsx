@@ -32,9 +32,10 @@ export interface SwiperProps<T extends ReactNode | object = ReactNode> {
   /**
    * @description function that will be called to render each slide
    * @param slide - current slide data
+   * @param index - index of current slide
    * @returns ReactNode
    */
-  renderSlide: (slide: T) => ReactNode;
+  renderSlide: (slide: T, index: number, array: T[]) => ReactNode;
 
   /**
    * @param swiperRef - a ref for swiper instance
@@ -164,12 +165,12 @@ export function SwiperNext<T extends ReactNode | object = ReactNode>(
           wrapperClassName
         )}
       >
-        {data.map((slide, index) => (
+        {data.map((slide, index, array) => (
           <div
             key={index}
             className={clsx("swiper-slide", swiperSlideStyles, slideClassName)}
           >
-            {renderSlide(slide)}
+            {renderSlide(slide, index, array)}
           </div>
         ))}
       </div>
