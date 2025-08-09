@@ -1,19 +1,26 @@
 import { Ref } from "react";
 
-export function refs<T extends Element | null>(
+export function assignToRef<T>(
+  value: T,
+  ...refs: Array<Ref<T> | undefined>
+): void {
+  refs.forEach((ref) => {
+    if (!ref) return;
+    switch (typeof ref) {
+      case "object":
+        ref.current = value;
+        break;
+      case "function":
+        ref(value);
+        break;
+    }
+  });
+}
+
+export function refs<T extends object | null>(
   ...refs: Ref<T>[]
 ): (node: T) => void {
   return (node) => {
-    refs.forEach((ref) => {
-      if (!ref) return;
-      switch (typeof ref) {
-        case "object":
-          ref.current = node;
-          break;
-        case "function":
-          ref(node);
-          break;
-      }
-    });
+    assignToRef(node, ...refs);
   };
 }

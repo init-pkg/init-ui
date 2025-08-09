@@ -1,5 +1,15 @@
 import { safeJSONStringify } from "@/utils/stringify";
-import { ReactNode, RefObject, useEffect, useRef, useState } from "react";
+import {
+  ForwardedRef,
+  forwardRef,
+  ReactElement,
+  ReactNode,
+  RefAttributes,
+  RefObject,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import Swiper from "swiper";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import {
@@ -14,6 +24,7 @@ import {
 } from "./swiper.css";
 import { useMounted } from "@/utils/isMounted";
 import clsx from "clsx";
+import { assignToRef } from "@/private/refs";
 
 /**
  * @interface SwiperProps - props for Swiper component
@@ -40,6 +51,7 @@ export interface SwiperProps<T extends ReactNode | object = ReactNode> {
   /**
    * @param swiperRef - a ref for swiper instance
    * @description provide here an object ref to get swiper instance upon initialization
+   * @deprecated use default `ref` prop instead
    */
   swiperRef?: RefObject<SwiperType | undefined>;
 
@@ -79,23 +91,8 @@ export interface SwiperProps<T extends ReactNode | object = ReactNode> {
   swiperFallback?: ReactNode;
 }
 
-/**
- *
- * @see {@link https://swiperjs.com/ | Swiper JS} for more info about swiper js
- * @param options - swiper options
- * @param modules - swiper modules, default modules are `[Navigation, Pagination, Autoplay]`
- * @param data - provide there an array of data for swiper
- * @param renderSlide - function that will be called to render each slide
- * @param className - className for swiper
- * @param perView - number of slides per view
- * @param spaceBetween - space between slides
- * @param swiperRef - a ref for swiper instance
- */
-
-export function SwiperNext<T extends ReactNode | object = ReactNode>(
-  props: SwiperProps<T>
-) {
-  const {
+function Renderer<T extends ReactNode | object = ReactNode>(
+  {
     options,
     data,
     renderSlide,
@@ -109,8 +106,9 @@ export function SwiperNext<T extends ReactNode | object = ReactNode>(
     modules = [],
     swiperFallback,
     swiperRef: externalRef,
-  } = props;
-
+  }: SwiperProps<T>,
+  ref: ForwardedRef<SwiperType>
+) {
   const swiperElement = useRef<HTMLDivElement>(null);
   const swiperRef = useRef<Swiper | null>(null);
 
@@ -138,7 +136,7 @@ export function SwiperNext<T extends ReactNode | object = ReactNode>(
       init(swiper) {
         setIsMounted(true);
         onInit?.(swiper);
-        if (externalRef) externalRef.current = swiper;
+        assignToRef(swiper, ref, externalRef);
       },
       ...defaultOptions.on,
     };
@@ -183,3 +181,21 @@ export function SwiperNext<T extends ReactNode | object = ReactNode>(
     </div>
   );
 }
+
+/**
+ *
+ * @see {@link https://swiperjs.com/ | Swiper JS} for more info about swiper js
+ * @param options - swiper options
+ * @param modules - swiper modules, default modules are `[Navigation, Pagination, Autoplay]`
+ * @param data - provide there an array of data for swiper
+ * @param renderSlide - function that will be called to render each slide
+ * @param className - className for swiper
+ * @param perView - number of slides per view
+ * @param spaceBetween - space between slides
+ * @param swiperRef - a ref for swiper instance
+ */
+export const SwiperNext = forwardRef(Renderer) as <
+  T extends ReactNode | object = ReactNode,
+>(
+  props: SwiperProps<T> & RefAttributes<SwiperType>
+) => ReactElement;

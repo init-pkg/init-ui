@@ -26,6 +26,8 @@ import clsx from "clsx";
  *  <Input />
  * </InputWrapper>
  * ```
+ *
+ * @deprecated This component is deprecated and will no longer supported
  */
 const InputWrapper = forwardRef<HTMLLabelElement, HeadlessInputWrapperProps>(
   (props, ref) => {

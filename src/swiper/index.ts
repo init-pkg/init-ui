@@ -1,3 +1,3 @@
 "use client";
 
-export * from "./Swiper";
+export { SwiperNext } from "./SwiperNext";
