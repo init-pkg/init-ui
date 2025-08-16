@@ -19,12 +19,35 @@ export interface ZPhoneNumberOptions {
   exceptions?: Array<RegExp | string>;
 }
 
-/**
- * @description zod schema for phone number validation
- * @param options - accepts string for message or ZPhoneNumberOptions object
- * @returns zod schema
- */
-export const zPhoneNumber = (options?: ZPhoneNumberOptions | string) => {
+type PhoneNumberString =
+  | z.ZodString
+  | z.ZodEffects<z.ZodString, string, string>;
+
+interface ZPhoneNumber {
+  /**
+   * @description zod schema for phone number validation
+   * @returns zod schema
+   */
+  (): PhoneNumberString;
+
+  /**
+   * @description zod schema for phone number validation
+   * @param message - accepts string for error message
+   * @returns zod schema
+   */
+  (message: string): PhoneNumberString;
+
+  /**
+   * @description zod schema for phone number validation
+   * @param options - accepts ZPhoneNumberOptions object
+   * @returns zod schema
+   */
+  (options: ZPhoneNumberOptions): PhoneNumberString;
+}
+
+export const zPhoneNumber: ZPhoneNumber = (
+  options?: ZPhoneNumberOptions | string
+) => {
   const {
     message = "Invalid phone number",
     shouldRefine = true,

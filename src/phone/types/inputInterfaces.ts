@@ -18,7 +18,7 @@ export interface BasePhoneInputGeneratorProps
   > {
   /**
    * @description value of the phone input
-   * @remarks when provided masks automatically
+   * @remarks when provided, masks applies automatically
    * @warning international controlled input still not supported
    */
   value?: string;
@@ -45,6 +45,10 @@ export interface PhoneInputGeneratorProps<T extends FieldValues>
   extends BasePhoneInputGeneratorProps {
   name?: Path<T>;
   control?: Control<T>;
+
+  /**
+   * @description validation rules for the phone input in react-hook-form standard
+   */
   validation?: RulesType<T>;
   /**
    * @description function that will be called with the number and the raw value

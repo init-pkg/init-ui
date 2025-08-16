@@ -86,7 +86,7 @@ function BasePhoneInputGenerator(
         ...props,
       })}
 
-      {renderCountryMark?.(currentCountry)}
+      {international && renderCountryMark?.(currentCountry)}
     </>
   );
 }

@@ -61,6 +61,8 @@ function Renderer<T extends FieldValues>(
  *
  * @example
  * ```tsx
+ * "use client" // if used in Next.js app router
+ *
  * <PhoneInputGenerator
  *   {...props}
  *   ref={ref}
@@ -80,6 +82,9 @@ function Renderer<T extends FieldValues>(
  * @remarks
  * - If you want react-hook-form to control the input, you need to pass both name and control props
  * - Do not use register function to register the input, it will not work
+ * - manual control of the input can be achieved using the onNumberChange and value props
+ *
+ * @warning international controlled input still not supported
  */
 export const PhoneInputGenerator = forwardRef(Renderer) as <
   T extends FieldValues,
